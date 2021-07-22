@@ -43,6 +43,13 @@ public class RozetkaTests {
 
         driver.findElement(By.xpath("//a[@class='tile-cats__heading tile-cats__heading_type_center ng-star-inserted'][@title='Ноутбуки']")).click();
 
+        driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+        driver.findElement(By.xpath("//rz-sort[@class='catalog-settings__sorting']//select[@class='select-css ng-untouched ng-pristine ng-valid ng-star-inserted']")).click();
+        driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+        driver.findElement(By.xpath("//rz-sort[@class='catalog-settings__sorting']//select[@class='select-css ng-untouched ng-pristine ng-valid ng-star-inserted']//option[contains(text(),' От дешевых к дорогим ')]")).click();
+        waiter.until(
+                webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+        driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
         List<WebElement> listOfLaptops =
                 driver.findElements(By
                         .xpath("//button[@aria-label='Купить']"));
